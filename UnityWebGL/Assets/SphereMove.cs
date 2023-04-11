@@ -65,4 +65,10 @@ public class SphereMove : MonoBehaviour
         _Speed = float.Parse(flaskSpeed, CultureInfo.InvariantCulture);
     }
 
+    public void ResetSpeed()
+    {
+        _Speed = 0.5f;
+        Flasktext.text = "Flask Speed is XX";
+    }
+
 }
