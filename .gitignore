@@ -9,6 +9,7 @@
 /UnityWebGL/[Bb]uilds/
 /UnityWebGL/[Ll]ogs/
 /UnityWebGL/[Mm]emoryCaptures/
+/venv
 
 # Package for second mouse
 /UnityWebGL/[Aa]ssets/[Ss]paceNavigator/

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | UnityWebGL</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="../templates/TemplateData/style.css"> <!-- 書き換え -->
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -55,7 +55,7 @@
         updateBannerVisibility();
       }
 
-      var buildUrl = "Build";
+      var buildUrl = "../templates/Build"; //書き換え
       var loaderUrl = buildUrl + "/Build.loader.js";
       var config = {
         dataUrl: buildUrl + "/Build.data.unityweb",
