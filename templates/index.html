@@ -135,7 +135,7 @@
             $('#ResetSpeedButton').click(
               function reset() {        
                 $.ajax({
-                  type: "POST",
+                  //type: "POST",
                   }).done(function(response) {
                     unityInstance.SendMessage("GameController","ResetSpeed");
                   }).fail(function() {
