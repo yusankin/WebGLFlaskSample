@@ -2,9 +2,15 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
+    <!-- 追加 -->
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- <script src="../templates/static/jquery-ui-1.13.2.custom/external/jquery/jquery.js"></script> -->
+    <!-- 追加 -->
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | UnityWebGL</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="shortcut icon" href="../templates/TemplateData/favicon.ico"> <!-- 書き換え -->
     <link rel="stylesheet" href="../templates/TemplateData/style.css"> <!-- 書き換え -->
   </head>
   <body>
@@ -30,6 +36,8 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+      var count = 0; //初期化
+
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -106,6 +114,39 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+
+          //ここから下に関数を追記 
+          $(function () {
+            $('#FlaskSpeedButton').click(
+              function flask() {        
+                $.ajax({
+                  type: "POST",
+                  url: '/SphereMove',
+                  data: {count: count},
+                  dataType: 'json'
+                  }).done(function(response) {
+                    count = response.count;
+                    unityInstance.SendMessage("GameController","FlaskSpeed",String(count));
+                  }).fail(function() {
+                    console.log("app is stopped")
+                });
+              }
+            );
+            $('#ResetSpeedButton').click(
+              function reset() {        
+                $.ajax({
+                  type: "POST",
+                  }).done(function(response) {
+                    unityInstance.SendMessage("GameController","ResetSpeed");
+                  }).fail(function() {
+                    console.log("app is stopped")
+                });
+              }
+            );
+
+          });
+
+          //ここより上に関数を追記 
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
@@ -115,5 +156,9 @@
       };
       document.body.appendChild(script);
     </script>
+    <!-- ボタン追加 -->
+    <input type="button" id="FlaskSpeedButton" value="ChangeSpeed" />
+    <input type="button" id="ResetSpeedButton"  value="ResetSpeed" />
+    <!-- ボタン追加 -->
   </body>
 </html>

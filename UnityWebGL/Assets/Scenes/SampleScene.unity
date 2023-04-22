@@ -927,8 +927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dfe405230f09a47b550d8685740282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
   _Player: {fileID: 269198954}
+  Flasktext: {fileID: 948078343}
 --- !u!4 &1361541736
 Transform:
   m_ObjectHideFlags: 0
